@@ -2,13 +2,12 @@ name: Update Epic Games Calendar
 
 on:
   schedule:
-    - cron: '0 8 * * *' # каждый день в 08:00 UTC
-  workflow_dispatch: # позволяет запускать вручную
+    - cron: '0 8 * * *'
+  workflow_dispatch:   # 💥 это нужно для ручного запуска!
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout репозиторий
       uses: actions/checkout@v3
@@ -24,7 +23,7 @@ jobs:
     - name: Запуск скрипта
       run: python script.py
 
-        - name: Коммит и пуш изменений
+    - name: Коммит и пуш изменений
       run: |
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
