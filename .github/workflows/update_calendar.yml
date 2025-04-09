@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: '0 8 * * *'   # запуск каждый день в 08:00 UTC
   workflow_dispatch:      # запуск вручную через кнопку
-
+  
 jobs:
   build:
     runs-on: ubuntu-latest
