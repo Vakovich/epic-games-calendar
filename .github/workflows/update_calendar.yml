@@ -25,11 +25,11 @@ jobs:
       run: python script.py
 
     - name: Коммит и пуш изменений
-    env:
-      GH_PAT: ${{ secrets.GH_PAT }}
-    run: |
-      git config --global user.name "github-actions"
-      git config --global user.email "github-actions@github.com"
-      git add epic_free_games.ics
-      git diff --cached --quiet && echo "No changes to commit" || git commit -m "Автоматическое обновление календаря"
-      git push https://x-access-token:${GH_PAT}@github.com/${{ github.repository }} HEAD:main
+      env:
+        GH_PAT: ${{ secrets.GH_PAT }}
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "github-actions@github.com"
+        git add epic_free_games.ics
+        git diff --cached --quiet && echo "No changes to commit" || git commit -m "Автоматическое обновление календаря"
+        git push https://x-access-token:${GH_PAT}@github.com/${{ github.repository }} HEAD:main
