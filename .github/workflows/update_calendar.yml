@@ -3,7 +3,7 @@ name: Update Epic Games Calendar
 on:
   schedule:
     - cron: '0 8 * * *'   # запуск каждый день в 08:00 UTC
-  workflow_dispatch:      # запуск вручную через кнопку
+  workflow_dispatch:       # запуск вручную через кнопку
 
 jobs:
   build:
@@ -24,11 +24,13 @@ jobs:
     - name: Запуск скрипта
       run: python script.py
 
-   - name: Коммит и пуш изменений
-  run: |
-    git config --global user.name "github-actions"
-    git config --global user.email "github-actions@github.com"
-    git pull origin main --rebase
-    git add epic_free_games.ics
-    git diff --cached --quiet && echo "No changes to commit" || git commit -m "Автоматическое обновление календаря"
-    git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/${{ github.repository }} HEAD:main
+    - name: Коммит и пуш изменений
+      env:
+        GH_PAT: ${{ secrets.GH_PAT }}
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "github-actions@github.com"
+        git pull origin main --rebase
+        git add epic_free_games.ics
+        git diff --cached --quiet && echo "No changes to commit" || git commit -m "Автоматическое обновление календаря"
+        git push https://x-access-token:${GH_PAT}@github.com/${{ github.repository }} HEAD:main
