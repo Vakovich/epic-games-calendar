@@ -3,7 +3,8 @@ name: Update Epic Games Calendar
 on:
   schedule:
     - cron: '0 8 * * *'
-  workflow_dispatch:   # 💥 это нужно для ручного запуска!
+  workflow_dispatch:   
+  
 
 jobs:
   build:
